@@ -1,56 +1,81 @@
 import streamlit as st
-import pandas as pd
-import os
+import random
+import time
 
-# Wskazujemy na Twój lokalny plik niszowy
-LOCAL_DATA_FILE = "oferty_dla_rodzicow.csv"
-
-st.set_page_config(page_title="Niszowy Agregator Danych", page_icon="💰")
-st.title("💰 Agregator Pracy Zdalnej dla Rodziców (Niska Konkurencja)")
+# --- Ustawienia Aplikacji ---
+st.set_page_config(page_title="Viral Forecast: Generator Trendów AI", page_icon="🔮")
+st.title("🔮 Viral Forecast: Generator Trendów AI")
 
 st.markdown("""
-Aplikacja wyświetla wyselekcjonowane oferty pracy z elastycznymi godzinami.
+Jesteś gotów na sławę? Wpisz dowolne słowo, a nasza sieć neuronowa przewidzi Twój viralowy trend na TikToku / YT Shorts!
 """)
 
-def load_data(file_path):
-    """Ładuje dane z lokalnego pliku CSV za pomocą pandas."""
-    try:
-        # Używamy pandas do odczytu lokalnego pliku CSV
-        df = pd.read_csv(file_path)
-        return df
-    except FileNotFoundError:
-        st.error(f"Błąd: Nie znaleziono pliku danych: {file_path}. Sprawdź, czy plik jest w tym samym folderze.")
-        return pd.DataFrame()
+# --- Stałe Wartości i Link ---
+LINK_AFILIACYJNY = "https://strefakursow.pl/?ref=371976" # Twój Link Afiliacyjny
 
-# --- Główny Panel Użytkownika ---
+# --- Sekcja Wprowadzania Danych ---
+st.header("1. Wprowadź swój temat")
 
-# Ładujemy dane z Twojego niszowego pliku CSV
-listings_df = load_data(LOCAL_DATA_FILE)
+with st.form("viral_generator_form"):
+    temat = st.text_input(
+        "Wpisz dowolne słowo lub frazę (np. Mój pies, szkoła, nowa praca):",
+        value="mój nowy outfit"
+    )
 
-if not listings_df.empty:
-    st.success(f"Załadowano {len(listings_df)} unikalnych wpisów pasujących do Twojej niszy.")
+    submitted = st.form_submit_button("Analizuj Trend i Generuj Viral!")
 
-    st.subheader("Aktualne Oferty:")
+# --- Sekcja Wyników i Monetyzacji ---
 
-    # --- KOD, KTÓRY WYŚWIETLA WSZYSTKIE KOLUMNY I PRZYCISK MONETYZACJI ---
-    st.dataframe(listings_df,
-                column_config={
-                    "Link do aplikacji": st.column_config.LinkColumn(
-                        "Link do aplikacji",
-                        display_text="Zacznij zarabiać (Kup Kurs)" # Wyświetlany tekst przycisku
-                    ),
-                    "Kategoria": st.column_config.TextColumn("Kategoria"),
-                    "Stawka": st.column_config.TextColumn("Stawka")
-                },
-                # Wskazujemy kolejność wszystkich kolumn, w tym Link do aplikacji
-                column_order=("Tytuł Oferty", "Wynagrodzenie (Potencjalne)", "Opis", "Źródło", "Kategoria", "Stawka", "Link do aplikacji"),
-                hide_index=True,
-                use_container_width=True)
-    # --- KONIEC KODU TABELI ---
+if submitted:
+    st.markdown("---")
+    st.header(f"2. Analiza AI dla: **{temat.upper()}**")
+
+    # Symulacja ładowania
+    with st.spinner('Analizowanie sieci neuronowych... Proszę czekać na werdykt...'):
+        time.sleep(2) 
+    
+    # Generowanie absurdalnych wyników
+    wspolczynnik_hype = round(random.uniform(70, 99.9), 1)
+    liczba_przewidywanych_wyswietlen = random.randint(100, 900) * 1000
+    przewidywany_zarobek = round(random.randint(10, 50) * 1000, -2) # np. 10000, 25000 PLN
+
+    # Generowanie absurdalnego hashtagu
+    slowa_kluczowe = temat.split() + ['szybko', 'viral', 'hype', '2025', 'mega']
+    hashtag_viral = "#" + "_".join(random.sample(slowa_kluczowe, k=random.randint(2, 4)))
+
+    
+    # Wyświetlanie Wyników
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.metric(
+            label="🔥 Współczynnik HYPE:",
+            value=f"{wspolczynnik_hype}%"
+        )
+    with col2:
+        st.metric(
+            label="📈 Potencjalne Wyświetlenia:",
+            value=f"{liczba_przewidywanych_wyswietlen:,} 🚀"
+        )
+    with col3:
+        st.metric(
+            label="💰 Przewidywany Zarobek:",
+            value=f"**{przewidywany_zarobek:,} PLN**"
+        )
 
     st.markdown("---")
+    
+    st.success(f"**Twój VIRALOWY HASHTAG:** `{hashtag_viral}`")
 
-    st.success("Twoje linki afiliacyjne są teraz zintegrowane bezpośrednio w tabeli. Kliknij w przycisk 'Zacznij zarabiać (Kup Kurs)'.")
+    # 🗣️ Wezwanie do udostępniania
+    st.subheader("🔥 Zrób Screenshota i Udostępnij na TikToku/IG! 🔥")
+    st.markdown("Pokaż znajomym, że wiesz, co się zaraz stanie viralem! 👇")
 
-else:
-    st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
+    # 💰 MIEJSCE NA MONETYZACJĘ!
+    st.warning("Psst! Prawdziwe pieniądze wymagają profesjonalizmu. Zdobądź umiejętności, by zamienić wyświetlenia na REALNY ZYSK:")
+
+    # Przycisk Monetyzacyjny
+    st.markdown(f'<a href="{LINK_AFILIACYJNY}" target="_blank" style="text-decoration: none;">'
+                f'<button style="background-color:#FF0077; color: white; padding: 15px 25px; border: none; border-radius: 8px; font-size: 18px; cursor: pointer;">'
+                f'Zdobądź Umiejętności Wideo/Montażu (Zacznij Zarabiać Poważnie) 🎬'
+                f'</button>'
+                f'</a>', unsafe_allow_html=True)
