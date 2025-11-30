@@ -33,7 +33,7 @@ if not listings_df.empty:
     # Wyświetlanie wyników
     # Wyświetlamy tylko kolumny z Tytułem, Wynagrodzeniem i Źródłem
     st.subheader("Aktualne Oferty:")
-   st.subheader("Aktualne Oferty:")
+    st.subheader("Aktualne Oferty:")
     
     # --- NOWY KOD, KTÓRY WYŚWIETLA WSZYSTKIE KOLUMNY I PRZYCISK ---
     st.dataframe(listings_df,
@@ -60,3 +60,4 @@ if not listings_df.empty:
 else:
 
     st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
+
