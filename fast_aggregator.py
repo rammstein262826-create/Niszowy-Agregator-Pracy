@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import os
-import os
-
 from st_aggrid import AgGrid, GridOptionsBuilder # DODAJ TĘ LINIĘ
 # Wskazujemy na Twój lokalny plik niszowy
 LOCAL_DATA_FILE = "oferty_dla_rodzicow.csv"
@@ -35,25 +33,28 @@ if not listings_df.empty:
     st.subheader("Aktualne Oferty:")
 
     # --- KOD, KTÓRY WYŚWIETLA WSZYSTKIE KOLUMNY I PRZYCISK MONETYZACJI ---
-    st.dataframe(listings_df,
-                column_config={
-                    "Link do aplikacji": st.column_config.LinkColumn(
-                        "Link do aplikacji",
-                        display_text="Zacznij zarabiać (Kup Kurs)" # Wyświetlany tekst przycisku
-                    ),
-                    "Kategoria": st.column_config.TextColumn("Kategoria"),
-                    "Stawka": st.column_config.TextColumn("Stawka")
-                },
-                # Wskazujemy kolejność wszystkich kolumn, w tym Link do aplikacji
-                column_order=("Tytuł Oferty", "Wynagrodzenie (Potencjalne)", "Opis", "Źródło", "Kategoria", "Stawka", "Link do aplikacji"),
-                hide_index=True,
-                use_container_width=True)
-    # --- KONIEC KODU TABELI ---
+    st.subheader("Aktualne Oferty:")
 
-    st.markdown("---")
+# --- KOD, KTÓRY WYŚWIETLA WSZYSTKIE KOLUMNY I PRZYCISK MONETYZACJI ---
+st.dataframe(listings_df,
+            column_config={
+                "Link do aplikacji": st.column_config.LinkColumn(
+                    "Link do aplikacji",
+                    display_text="Zacznij zarabiać (Kup Kurs)" # Wyświetlany tekst przycisku
+                ),
+                "Kategoria": st.column_config.TextColumn("Kategoria"),
+                "Stawka": st.column_config.TextColumn("Stawka")
+            },
+            column_order=("Tytuł Oferty", "Wynagrodzenie (Potencjalne)", "Opis", "Źródło", "Kategoria", "Stawka", "Link do aplikacji"),
+            hide_index=True,
+            use_container_width=True)
+# --- KONIEC KODU TABELI ---
+
+st.markdown("---")
 
     st.success("Twoje linki afiliacyjne są teraz zintegrowane bezpośrednio w tabeli. Kliknij w przycisk 'Zacznij zarabiać (Kup Kurs)'.")
 
 else:
     st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
+
 
