@@ -27,7 +27,8 @@ def load_data(file_path):
 # Ładujemy dane z Twojego niszowego pliku CSV
 listings_df = load_data(LOCAL_DATA_FILE) 
 
-   if not listings_df.empty:
+  
+if not listings_df.empty:
     st.success(f"Załadowano {len(listings_df)} unikalnych wpisów pasujących do Twojej niszy.")
     
     st.subheader("Aktualne Oferty:")
@@ -61,6 +62,7 @@ else:
     
 
     st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
+
 
 
 
