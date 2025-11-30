@@ -33,6 +33,10 @@ if not listings_df.empty:
     # Wyświetlanie wyników
     # Wyświetlamy tylko kolumny z Tytułem, Wynagrodzeniem i Źródłem
     st.subheader("Aktualne Oferty:")
+    
+   if not listings_df.empty:
+    st.success(f"Załadowano {len(listings_df)} unikalnych wpisów pasujących do Twojej niszy.")
+    
     st.subheader("Aktualne Oferty:")
     
     # --- NOWY KOD, KTÓRY WYŚWIETLA WSZYSTKIE KOLUMNY I PRZYCISK ---
@@ -42,7 +46,6 @@ if not listings_df.empty:
                         "Link do aplikacji",
                         display_text="Zacznij zarabiać (Kup Kurs)" # Wyświetlany tekst przycisku
                     ),
-                    # Używamy tej opcji, aby kolumna Link do aplikacji była ostatnia
                     "Kategoria": st.column_config.TextColumn("Kategoria"),
                     "Stawka": st.column_config.TextColumn("Stawka")
                 },
@@ -52,6 +55,12 @@ if not listings_df.empty:
                 use_container_width=True)
     # --- KONIEC NOWEGO KODU ---
 
+    st.markdown("---")
+    
+    st.success("Twoje linki afiliacyjne są teraz zintegrowane bezpośrednio w tabeli. Kliknij w przycisk 'Zacznij zarabiać (Kup Kurs)'.")
+
+else:
+    st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
     st.markdown("---")
     
     # 💰 Usunięto starą, ręczną reklamę, bo cała tabela teraz monetyzuje!
