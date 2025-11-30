@@ -53,15 +53,6 @@ if not listings_df.empty:
     
     st.success("Twoje linki afiliacyjne są teraz zintegrowane bezpośrednio w tabeli. Kliknij w przycisk 'Zacznij zarabiać (Kup Kurs)'.")
 
-else:
-    st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
-    st.markdown("---")
-    
-    # 💰 Usunięto starą, ręczną reklamę, bo cała tabela teraz monetyzuje!
-    st.success("Twoje linki afiliacyjne są teraz zintegrowane bezpośrednio w tabeli. Kliknij w przycisk 'Zacznij zarabiać (Kup Kurs)'.").")
-    
-
-    st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
 
 
 
