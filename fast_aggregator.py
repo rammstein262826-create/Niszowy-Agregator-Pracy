@@ -1,7 +1,9 @@
 import streamlit as st
 import pandas as pd
 import os
+import os
 
+from st_aggrid import AgGrid, GridOptionsBuilder # DODAJ TĘ LINIĘ
 # Wskazujemy na Twój lokalny plik niszowy
 LOCAL_DATA_FILE = "oferty_dla_rodzicow.csv"
 
@@ -54,3 +56,4 @@ if not listings_df.empty:
 
 else:
     st.warning("Nie udało się załadować żadnych danych. Sprawdź nazwę pliku CSV.")
+
